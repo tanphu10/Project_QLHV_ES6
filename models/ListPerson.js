@@ -41,7 +41,7 @@ export default class ListCompilation {
       </tr>`;
     });
     document.getElementById("tbodyForm").innerHTML = content;
-    document.getElementById("btnClose").click();
+    // console.log(content);
   }
   saveLocal() {
     localStorage.setItem("arr", JSON.stringify(this.arr));
@@ -88,6 +88,7 @@ export default class ListCompilation {
       this.arr[index] = person;
       this.renderGiaoDien();
       this.saveLocal();
+      document.getElementById("btnClose").click();
     }
   }
   searchPerson(keyWord) {
@@ -120,14 +121,13 @@ export default class ListCompilation {
     let ketQuaSort = this.arr.filter((item) => {
       return item.chonViTri == loaiPerson;
     });
-    // console.log(this.arr[index]);
     console.log(ketQuaSort);
+    console.log(loaiPerson);
     if (loaiPerson == "all") {
       this.renderGiaoDien(this.arr);
     } else {
       this.renderGiaoDien();
-      // console.log(this.renderGiaoDien());
-      console.log(this.renderGiaoDien(this.arr));
+      console.log(this.renderGiaoDien());
     }
   }
 }

@@ -69,7 +69,9 @@ document.getElementById("btnCapNhat").onclick = () => {
   );
   console.log(arrInput);
   let person;
+  // let changeABC = document.getElementById("chonVitri").value;
   let changeABC = document.getElementById("chonViTri").value;
+  // let changeABC = document.getElementById("chonViTri").value;
   if (changeABC == "SinhVien") {
     person = new SinhVien();
   } else if (changeABC == "NhanVien") {
