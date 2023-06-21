@@ -37,8 +37,7 @@ document.getElementById("themPerson").addEventListener("click", () => {
   );
   console.log(arrInput);
   let person;
-  let selectElemen = document.getElementById("chonViTri");
-  let changeABC = selectElemen.value;
+  let changeABC = document.getElementById("chonViTri").value;
   if (changeABC == "SinhVien") {
     person = new SinhVien();
   } else if (changeABC == "NhanVien") {
@@ -65,11 +64,12 @@ window.getInforPerson = (idMaSo) => {
 };
 
 document.getElementById("btnCapNhat").onclick = () => {
-  let arrInput = document.querySelectorAll("#controlForm input");
+  let arrInput = document.querySelectorAll(
+    "#controlForm input, #controlForm select"
+  );
   console.log(arrInput);
   let person;
-  let selectElemen = document.getElementById("chonVitri");
-  let changeABC = selectElemen.value;
+  let changeABC = document.getElementById("chonViTri").value;
   if (changeABC == "SinhVien") {
     person = new SinhVien();
   } else if (changeABC == "NhanVien") {
@@ -77,11 +77,9 @@ document.getElementById("btnCapNhat").onclick = () => {
   } else if (changeABC == "KhachHang") {
     person = new KhachHang();
   }
-  console.log(person);
   for (let item of arrInput) {
     let { id, value } = item;
     person[id] = value;
-    // console.log(person[id]);
   }
   listPerson.editPerson(person);
 };
