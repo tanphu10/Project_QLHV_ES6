@@ -126,8 +126,7 @@ export default class ListCompilation {
     if (loaiPerson == "all") {
       this.renderGiaoDien(this.arr);
     } else {
-      this.renderGiaoDien();
-      console.log(this.renderGiaoDien());
+      this.renderGiaoDien(ketQuaSort);
     }
   }
 }
