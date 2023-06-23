@@ -8,27 +8,34 @@ export default class ListCompilation {
   addPerson(person) {
     this.arr.push(person);
   }
-  renderGiaoDien() {
-    let content = this.arr.map((item, index) => {
-      let abc;
-      if (item.diemLi) {
-        var sinhVien = new SinhVien();
-        Object.assign(sinhVien, item);
-        abc = "Điểm Trung Bình là :" + sinhVien.tinhDiemTrungBinh();
-      } else if (item.soNgayLamViec) {
-        var nhanVien = new NhanVien();
-        Object.assign(nhanVien, item);
-        abc = "Tổng lương là:" + nhanVien.tinhLuong();
-      } else if (item.tenCongTy) {
-        var khachHang = new KhachHang();
-        Object.assign(khachHang, item);
-        abc = `-công ty : 
+  renderGiaoDien(arrRender) {
+    // arrRender = undifined
+    console.log(arrRender);
+    if (arrRender == undefined) {
+      arrRender = this.arr;
+    }
+
+    let content = arrRender
+      .map((item, index) => {
+        let abc;
+        if (item.diemLi) {
+          var sinhVien = new SinhVien();
+          Object.assign(sinhVien, item);
+          abc = "Điểm Trung Bình là :" + sinhVien.tinhDiemTrungBinh();
+        } else if (item.soNgayLamViec) {
+          var nhanVien = new NhanVien();
+          Object.assign(nhanVien, item);
+          abc = "Tổng lương là:" + nhanVien.tinhLuong();
+        } else if (item.tenCongTy) {
+          var khachHang = new KhachHang();
+          Object.assign(khachHang, item);
+          abc = `-công ty : 
           ${item.tenCongTy}
           -Đánh giá:
           ${item.danhGia}`;
-      }
-      let { idMaSo, hoTen, email, diaChi, chonViTri } = item;
-      return ` 
+        }
+        let { idMaSo, hoTen, email, diaChi, chonViTri } = item;
+        return ` 
       <tr >
       <td>${idMaSo}</td>
       <td>${hoTen}</td>
@@ -39,7 +46,8 @@ export default class ListCompilation {
       <td><button class="btn btn-danger" onclick="deletePerson('${idMaSo}')">Xoá</button>
       <button class="btn btn-warning" onclick="getInforPerson('${idMaSo}')">Sửa</button>  </td>
       </tr>`;
-    });
+      })
+      .join("");
     document.getElementById("tbodyForm").innerHTML = content;
     // console.log(content);
   }
@@ -100,6 +108,7 @@ export default class ListCompilation {
         .trim()
         .includes(newKey.toLowerCase().trim());
     });
+    this.renderGiaoDien(arrTimKiem);
     console.log(arrTimKiem);
   }
   sapXepKiTu() {
@@ -124,7 +133,7 @@ export default class ListCompilation {
     console.log(ketQuaSort);
     console.log(loaiPerson);
     if (loaiPerson == "all") {
-      this.renderGiaoDien(this.arr);
+      this.renderGiaoDien();
     } else {
       this.renderGiaoDien(ketQuaSort);
     }
